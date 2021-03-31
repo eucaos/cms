@@ -1,16 +1,11 @@
 import React from "react";
 import { useHistory, useRouteMatch } from "react-router";
-import { Item } from "./itemsSlice";
-
-const getFolderId = (item?: Item) => {
-  if (!item) return undefined;
-  return item.type === "ASSET" ? item.id.slice(0, -1) : item.id;
-};
+import { getFolderId, ItemRoute } from "../route";
 
 export const Back = () => {
   const history = useHistory<any>();
 
-  let listRouteMatch = useRouteMatch<Item & { id?: string }>("/:type/:id/");
+  let listRouteMatch = useRouteMatch<ItemRoute>("/:type/:id/");
 
   const folderId = getFolderId(listRouteMatch?.params);
   const previousFolder = folderId?.slice(0, -1);
