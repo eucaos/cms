@@ -34,7 +34,18 @@ export const { loadItems } = itemsSlice.actions;
 export const loadItemsAsync = (id?: string): AppThunk => (dispatch) => {
   const endpoint = "/api/items" + (id ? "/" + id : "");
   fetch(endpoint).then((response) =>
-    response.json().then((items: Item[]) => dispatch(loadItems(items)))
+    response
+      .json()
+      .then((items: Item[]) =>
+        dispatch(
+          loadItems(
+            items.map((p) => ({
+              ...p,
+              type: p.type !== "ASSET" ? "FOLDER" : "ASSET",
+            }))
+          )
+        )
+      )
   );
   // setTimeout(() => {
   //   //dispatch(loadItems(items));

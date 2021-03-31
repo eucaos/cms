@@ -2,12 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router";
 import { RootState } from "../../app/store";
-import { getItem } from "../items/itemsSlice";
+import { getItem, Item } from "../items/itemsSlice";
 export const Asset = () => {
-  let listRouteMatch = useRouteMatch<{
-    type: string;
-    id: string;
-  }>("/:type/:id/");
+  let listRouteMatch = useRouteMatch<Item>("/:type/:id/");
 
   const asset = useSelector((state: RootState) =>
     getItem(state, listRouteMatch?.params.id ?? "")
@@ -18,7 +15,7 @@ export const Asset = () => {
   //     dispatch(loadItemsAsync(listRouteMatch?.params.id));
   //   }, [listRouteMatch?.params.id]);
 
-  return listRouteMatch?.params.type === "asset" ? (
+  return listRouteMatch?.params.type === "ASSET" ? (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       <div className="md:flex">
         <div className="md:flex-shrink-0">

@@ -31,7 +31,7 @@ export const Items = () => {
       <Cards
         items={items}
         onSelected={(item) => {
-          history.push((item.type ? "/asset" : "/folder") + "/" + item.id);
+          history.push(`/${item.type}/${item.id}`);
         }}
       />
     </>

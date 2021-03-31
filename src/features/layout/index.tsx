@@ -3,23 +3,21 @@ import { useRouteMatch } from "react-router";
 import { Asset } from "../asset";
 import { Back } from "../items/Back";
 import { Items } from "../items/Items";
+import { Item } from "../items/itemsSlice";
 
 export const Layout = () => {
-  let listRouteMatch = useRouteMatch<{
-    type: string;
-    id: string;
-  }>("/:type/:id/");
+  let listRouteMatch = useRouteMatch<Item>("/:type/:id/");
   return (
     <div className="App">
       <Back />
       <div
-        className={`grid sm:divide-x sm:divide-blue-300 ${
-          listRouteMatch?.params.type === "asset" ? "sm:grid-cols-2" : ""
+        className={`p-4 border-4 m-1 rounded-xl grid sm:divide-x sm:divide-blue-300 ${
+          listRouteMatch?.params.type === "ASSET" ? "sm:grid-cols-2" : ""
         }`}
       >
         <div
           className={
-            listRouteMatch?.params.type === "asset"
+            listRouteMatch?.params.type === "ASSET"
               ? "hidden sm:block"
               : "" + " p-5"
           }
