@@ -4,8 +4,10 @@ import { AppThunk, RootState } from "../../app/store";
 export interface Item {
   id: string;
   name: string;
-  type?: "FOLDER" | "ASSET";
+  type?: ItemType;
 }
+
+export type ItemType = "FOLDER" | "ASSET";
 
 interface ItemsState {
   value: Item[];
@@ -47,9 +49,6 @@ export const loadItemsAsync = (id?: string): AppThunk => (dispatch) => {
         : undefined
     )
   );
-  // setTimeout(() => {
-  //   //dispatch(loadItems(items));
-  // }, 1000);
 };
 
 // The function below is called a selector and allows us to select a value from
