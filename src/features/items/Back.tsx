@@ -10,11 +10,11 @@ export const Back = () => {
   const folderId = getFolderId(listRouteMatch?.params);
   const previousFolder = folderId?.slice(0, -1);
   const parentCss =
-    "hover:bg-blue-300 p-4 border-4 m-1 rounded-xl" +
-    (folderId ? " visible" : " invisible");
+    "hover:bg-blue-300 p-4 border-4 w-full rounded-xl";
   return (
-    <div
+    <button
       className={parentCss}
+      disabled={!folderId}
       onClick={() => history.push("/folder/" + previousFolder ?? "")}
     >
       <div className="w-4">
@@ -32,6 +32,6 @@ export const Back = () => {
           />
         </svg>
       </div>
-    </div>
+    </button>
   );
 };

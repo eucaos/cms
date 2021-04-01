@@ -8,4 +8,4 @@ export const getFolderId = (item?: ItemRoute) => {
   return item.type === "asset" ? item.id.slice(0, -1) : item.id;
 };
 
-export const isAsset = (item?: ItemRoute) => item?.type === "asset";
+export const isAssetRoute = (item?: ItemRoute) => item?.type === "asset";
